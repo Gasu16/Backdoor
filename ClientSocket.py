@@ -7,7 +7,7 @@ import os
 import subprocess
 import shlex
 
-### ULTIMA MODIFICA: 01 AGOSTO 2017
+### ULTIMA MODIFICA: 02 AGOSTO 2017
 
 ###### CLIENT (ATTACCANTE) DA CONNETTERE AL SERVER (VITTIMA) ######
 
