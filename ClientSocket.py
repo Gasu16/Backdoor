@@ -11,7 +11,7 @@ import shlex
 
 ###### CLIENT (ATTACCANTE) DA CONNETTERE AL SERVER (VITTIMA) ######
 
-server_host = 'xxx.xxx.xxx.xxx' # IP del server (vittima) a cui dobbiamo collegarci
+server_host = 'localhost' # IP del server (vittima) a cui dobbiamo collegarci
 server_port = 8888
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
