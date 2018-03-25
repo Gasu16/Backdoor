@@ -9,7 +9,7 @@ import os
 import subprocess
 import shlex
 
-### ULTIMA MODIFICA: 02 AGOSTO 2017
+### ULTIMA MODIFICA: 25 MARZO 2018
 
 ###### SERVER (VITTIMA) CHE RICEVE I COMANDI DAL CLIENT (ATTACCANTE) ######
 
